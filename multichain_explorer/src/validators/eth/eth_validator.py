@@ -1,5 +1,4 @@
-from unicodedata import is_normalized
-from src.validators.validator import ValidatorInterface
+from multichain_explorer.src.validators.validator import ValidatorInterface
 import re
 
 class EthValidator(ValidatorInterface):

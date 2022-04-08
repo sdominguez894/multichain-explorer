@@ -1,6 +1,6 @@
 import pytest
-from src.providers.provider import ProviderInterface
-from src.providers.eth.provider import EthProvider
+from multichain_explorer.src.providers.provider import ProviderInterface
+from multichain_explorer.src.providers.eth.eth_provider import EthProvider
 
 
 @pytest.fixture

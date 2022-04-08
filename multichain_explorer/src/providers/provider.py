@@ -1,5 +1,5 @@
 import abc
-from src.models.provider_options import ProviderOptions
+from multichain_explorer.src.models.provider_options import ProviderOptions
 
 class ProviderInterface(metaclass=abc.ABCMeta):
     @classmethod

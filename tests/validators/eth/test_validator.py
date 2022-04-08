@@ -1,6 +1,6 @@
 import pytest
-from src.validators.validator import ValidatorInterface
-from src.validators.eth.validator import EthValidator
+from multichain_explorer.src.validators.validator import ValidatorInterface
+from multichain_explorer.src.validators.eth.eth_validator import EthValidator
 
 
 @pytest.fixture

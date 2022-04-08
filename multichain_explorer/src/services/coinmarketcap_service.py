@@ -1,18 +1,17 @@
-import config
-from src.services.fetch_service import FetchService
+from multichain_explorer.src.services.fetch_service import FetchService
 
 class CoinMarketCapService():
     """
     This class is used to fetch data from the CoinMarketCap API 
     """
-    currency : str
-    fetchService : FetchService
+    api_url: str = ''
+    api_key: str = ''
 
     def __init__(self):
         self.currency = "USD"
         self.fetchService : FetchService()
 
-    def fetchData(self, symbol: str):
+    def fetchData(self, symbol: str) -> dict:
         """
         Fetch data from the CoinMarketCap API
 
@@ -28,7 +27,7 @@ class CoinMarketCapService():
 
             #TODO - Use class member service
             data = FetchService().fetchJson(
-                                        config.COINMARKETCAP_URL,
+                                        self.api_url,
                                         params,
                                         headers
                                     )
@@ -38,17 +37,32 @@ class CoinMarketCapService():
             raise
 
 
-    def get_params(self, symbol: str):
+    def get_params(self, symbol: str) -> dict:
+        """
+        Get the parameters for the API call
+
+        Args:
+            symbol: the symbol of the cryptocurrency
+
+        Returns:
+            The parameters as a dict
+        """
         parameters = {
             'symbol': symbol,
             'convert': self.currency
         }
         return parameters
 
-    def get_headers(self):
+    def get_headers(self) -> dict:
+        """
+        Get the headers for the API call
+
+        Returns:
+            The headers as a dict
+        """
         headers = {
             'Accepts': 'application/json',
-            'X-CMC_PRO_API_KEY': config.COINMARKETCAP_API_KEY
+            'X-CMC_PRO_API_KEY': self.api_key
         }
         return headers
 

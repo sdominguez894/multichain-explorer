@@ -1,20 +1,21 @@
-import config
 from web3   import Web3
-from src.models.blockchains import Blockchains
-from src.services.coinmarketcap_service import CoinMarketCapService
-from src.validators.eth.validator import EthValidator
-from src.validators.validator import ValidatorInterface
-from src.models.provider_options import ProviderOptions
-from src.providers.provider import ProviderInterface
+from multichain_explorer.src.models.blockchains import Blockchains
+from multichain_explorer.src.services.coinmarketcap_service import CoinMarketCapService
+from multichain_explorer.src.validators.eth.eth_validator import EthValidator
+from multichain_explorer.src.validators.validator import ValidatorInterface
+from multichain_explorer.src.models.provider_options import ProviderOptions
+from multichain_explorer.src.providers.provider import ProviderInterface
 
 
 class EthProvider(ProviderInterface):
     
+    INFURA_URL : str = ''
     validator: ValidatorInterface
     coinMarketCapService : CoinMarketCapService
 
+
     def __init__(self):
-        self.provider = Web3(Web3.HTTPProvider(config.INFURA_URL))
+        self.provider = Web3(Web3.HTTPProvider(self.INFURA_URL))
         self.validator = EthValidator()
         self.coinMarketCapService : CoinMarketCapService()
 

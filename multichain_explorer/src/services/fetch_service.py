@@ -8,7 +8,7 @@ class FetchService():
     def __init__(self):
         pass
 
-    def fetchJson(self, endpoint: str, parameters, headers): 
+    def fetchJson(self, endpoint: str, parameters, headers) -> dict: 
         """
         Fetch JSON data from an endpoint
 
