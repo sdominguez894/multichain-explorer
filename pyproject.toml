@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "multichain_explorer"
-version = "0.1.0"
+version = "0.1.2"
 description = "A simple package to explore multiple blockchains in an homogeneous way"
 authors = ["sdominguez894 <sdominguez894@gmail.com>"]
 
