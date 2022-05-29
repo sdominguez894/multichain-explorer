@@ -9,14 +9,13 @@ from multichain_explorer.src.providers.provider import ProviderInterface
 
 class BtcProvider(ProviderInterface):
     
-    validator: ValidatorInterface
-    coinMarketCapService : CoinMarketCapService
+    provider = Bitcoin()
+    validator : ValidatorInterface = BtcValidator()
+    coinMarketCapService : CoinMarketCapService = CoinMarketCapService()
 
 
     def __init__(self):
-        self.provider = Bitcoin()
-        self.validator = BtcValidator()
-        self.coinMarketCapService : CoinMarketCapService()
+       pass
 
 
     def get_summary(self):

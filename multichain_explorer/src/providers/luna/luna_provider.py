@@ -11,13 +11,16 @@ from terra_sdk.client.lcd import LCDClient
 
 class LunaProvider(ProviderInterface):
     
-    provider = LCDClient(chain_id="columbus-5", url="https://lcd.terra.dev")
+    # Must be set externally by the caller
+    TERRA_CHAIN_ID  : str = ""
+    TERRA_URL       : str = ""
+
     validator: ValidatorInterface = LunaValidator()
     coinMarketCapService : CoinMarketCapService = CoinMarketCapService()
 
 
     def __init__(self):
-        pass
+        self.provider = LCDClient(chain_id = self.TERRA_CHAIN_ID, url = self.TERRA_URL)
 
 
     def get_summary(self):
@@ -65,6 +68,8 @@ class LunaProvider(ProviderInterface):
             if options.raw:
                 block_data["rawData"] = {}
 
+            return block_data
+
         except Exception as e:
             raise
 
@@ -83,6 +88,7 @@ class LunaProvider(ProviderInterface):
         except ValueError as err:
             # Log exception
             raise
+        
         return latest_transactions
 
 

@@ -12,23 +12,19 @@ from algosdk.v2client import indexer
 
 class AlgoProvider(ProviderInterface):
 
-    algod_address = "https://mainnet-algorand.api.purestake.io/ps2"
-    indexer_address = "https://mainnet-algorand.api.purestake.io/idx2"
+    # To load from config file
+    ALGOD_TOKEN : str     = ""
+    ALGOD_ADDRESS : str   = ""
+    INDEXER_ADDRESS : str = ""
 
-    validator: ValidatorInterface
-    coinMarketCapService : CoinMarketCapService
+    validator: ValidatorInterface = AlgoValidator()
+    coinMarketCapService : CoinMarketCapService = CoinMarketCapService()
 
 
     def __init__(self):
-        #TODO - Load algod_token from config file
-        algod_token = "mAwxZgtD2M83O8Mb3953n3rON6PaVmqA19uVx3Mf"
-        headers = { "X-API-Key": algod_token }
-
-        self.provider = algod.AlgodClient(algod_token, self.algod_address, headers)
-        self.provider.indexer = indexer.IndexerClient(algod_token, self.indexer_address, headers)
-        
-        self.validator = AlgoValidator()
-        self.coinMarketCapService : CoinMarketCapService()
+        headers = { "X-API-Key": self.ALGOD_TOKEN }
+        self.provider = algod.AlgodClient(self.ALGOD_TOKEN, self.ALGOD_ADDRESS, headers)
+        self.provider.indexer = indexer.IndexerClient(self.ALGOD_TOKEN, self.INDEXER_ADDRESS, headers)
 
 
     def get_summary(self):

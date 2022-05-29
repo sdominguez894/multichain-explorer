@@ -9,14 +9,15 @@ from blockfrost import BlockFrostApi, ApiError
 
 class AdaProvider(ProviderInterface):
     
-    validator: ValidatorInterface
-    coinMarketCapService : CoinMarketCapService
+    #Must be set externally by the caller
+    BLOCKFROST_PROJECT_ID : str = ""
+
+    validator: ValidatorInterface = AdaValidator()
+    coinMarketCapService : CoinMarketCapService = CoinMarketCapService()
 
 
     def __init__(self):
-        self.provider = BlockFrostApi(project_id='mainnetugnPOWiXzieqDhohU5S1UWUsyvaXHLCz')
-        self.validator = AdaValidator()
-        self.coinMarketCapService : CoinMarketCapService()
+        self.provider = BlockFrostApi(project_id = self.BLOCKFROST_PROJECT_ID)
 
 
     def get_summary(self):
@@ -64,7 +65,6 @@ class AdaProvider(ProviderInterface):
             if options.raw:
                     block_data["rawData"] = {}
             
-            return block_data
         except ApiError as e:
             print(e)
 

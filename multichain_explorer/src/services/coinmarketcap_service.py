@@ -4,12 +4,14 @@ class CoinMarketCapService():
     """
     This class is used to fetch data from the CoinMarketCap API 
     """
-    API_URL: str = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
-    API_KEY: str = ''
+
+    #To be loaded from config file
+    COINMARKETCAP_API_URL: str = ""
+    COINMARKETCAP_API_KEY: str = ""
 
     def __init__(self):
         self.currency = "USD"
-        self.fetchService : FetchService()
+        self.fetchService = FetchService()
 
     def fetchData(self, symbol: str) -> dict:
         """
@@ -26,8 +28,8 @@ class CoinMarketCapService():
             headers = self.get_headers()
 
             #TODO - Use class member service
-            data = FetchService().fetchJson(
-                                        self.API_URL,
+            data = FetchService().fetch_json(
+                                        self.COINMARKETCAP_API_URL,
                                         params,
                                         headers
                                     )
@@ -63,7 +65,7 @@ class CoinMarketCapService():
         """
         headers = {
             'Accepts': 'application/json',
-            'X-CMC_PRO_API_KEY': self.API_KEY
+            'X-CMC_PRO_API_KEY': self.COINMARKETCAP_API_KEY
         }
         return headers
 

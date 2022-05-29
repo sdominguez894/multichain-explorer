@@ -9,15 +9,14 @@ from multichain_explorer.src.providers.provider import ProviderInterface
 
 class EthProvider(ProviderInterface):
     
-    INFURA_URL : str = ''
-    validator: ValidatorInterface
-    coinMarketCapService : CoinMarketCapService
+    # Must be set externally by the caller
+    INFURA_URL : str = ""
+    validator : ValidatorInterface = EthValidator()
+    coinMarketCapService : CoinMarketCapService = CoinMarketCapService()
 
 
     def __init__(self):
         self.provider = Web3(Web3.HTTPProvider(self.INFURA_URL))
-        self.validator = EthValidator()
-        self.coinMarketCapService : CoinMarketCapService()
 
 
     def get_summary(self):
