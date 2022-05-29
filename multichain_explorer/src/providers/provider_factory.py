@@ -1,5 +1,9 @@
 
+from multichain_explorer.src.providers.ada.ada_provider import AdaProvider
+from multichain_explorer.src.providers.algo.algo_provider import AlgoProvider
+from multichain_explorer.src.providers.btc.btc_provider import BtcProvider
 from multichain_explorer.src.providers.eth.eth_provider import EthProvider
+from multichain_explorer.src.providers.luna.luna_provider import LunaProvider
 from multichain_explorer.src.providers.provider import ProviderInterface
 from multichain_explorer.src.models.blockchains import Blockchains
 
@@ -17,12 +21,12 @@ class BlockchainProvider():
         """
         match blockchain_id:
             case Blockchains.BTC:
-                return None
+                return BtcProvider()
             case Blockchains.ETH:
                 return EthProvider()
             case Blockchains.ADA:
-                return None
+                return AdaProvider()
             case Blockchains.ALGO:
-                return None
+                return AlgoProvider()
             case Blockchains.LUNA:
-                return None
+                return LunaProvider()

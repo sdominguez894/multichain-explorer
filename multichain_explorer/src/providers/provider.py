@@ -1,5 +1,7 @@
 import abc
+from typing import List
 from multichain_explorer.src.models.provider_options import ProviderOptions
+from multichain_explorer.src.models.provider_models import Address, Block
 
 class ProviderInterface(metaclass=abc.ABCMeta):
     @classmethod

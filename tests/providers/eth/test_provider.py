@@ -1,17 +1,16 @@
-import colorama
 from colorama import Fore
 
 import pytest
 from multichain_explorer.src.providers.provider import ProviderInterface
 from multichain_explorer.src.providers.eth.eth_provider import EthProvider
 from multichain_explorer.src.services.coinmarketcap_service import CoinMarketCapService
-
+from tests import test_config
 
 @pytest.fixture
 def provider() -> ProviderInterface:
     """Setup a provider instance to enable the retrieval of Ethereum data"""
-    EthProvider.INFURA_URL = ''
-    CoinMarketCapService.API_KEY = ''
+    EthProvider.INFURA_URL = test_config.INFURA_URL
+    CoinMarketCapService.API_KEY = test_config.COINMARKETCAP_API_KEY
 
     if EthProvider.INFURA_URL == '' or CoinMarketCapService.API_KEY == '':
         print(Fore.YELLOW + "\nPlease set the INFURA_URL and API_KEY variables before running the tests!\n" + Fore.RESET)
