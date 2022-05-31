@@ -75,7 +75,7 @@ class BtcProvider(ProviderInterface):
         return block_data
 
 
-    def count_leading_zeroes(text : str):
+    def count_leading_zeroes(self, text : str):
        #Count leading zeroes in a string
         match = re.match(r'^0+', text)
         return 0 if match is None else len(match.group())

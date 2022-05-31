@@ -35,7 +35,7 @@ class AdaProvider(ProviderInterface):
 
 
     def get_blocks(self, num_blocks = 10, options = ProviderOptions()):
-        latest_block_number = self.get_block_by_id('latest').height
+        latest_block_number = self.provider.block_latest().height
         latest_blocks = []
 
         for block_number in range(latest_block_number, 
